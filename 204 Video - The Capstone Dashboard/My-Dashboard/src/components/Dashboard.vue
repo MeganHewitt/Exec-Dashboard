@@ -65,10 +65,10 @@ const summaryCards = computed(() => {
     const currentIndex = metrics.value.findIndex(m => m.month === selectedMonth.value)
     const previous = currentIndex > 0 ? metrics.value[currentIndex - 1] : null
 
-    const revenueChange = previous ? ((current.revenue - previous.revenue) / previous.revenue * 100).toFixed(1) : 0
-    const visitorsChange = previous ? ((current.visitors - previous.visitors) / previous.visitors * 100).toFixed(1) : 0
-    const conversionsChange = previous ? (current.conversions - previous.conversions).toFixed(1) : 0
-    const ordersChange = previous ? ((current.orders - previous.orders) / previous.orders * 100).toFixed(1) : 0
+    const revenueChange = previous ? ((current.revenue - previous.revenue) / previous.revenue * 100).toFixed(1) : '0'
+    const visitorsChange = previous ? ((current.visitors - previous.visitors) / previous.visitors * 100).toFixed(1) : '0'
+    const conversionsChange = previous ? (current.conversions - previous.conversions).toFixed(1) : '0'
+    const ordersChange = previous ? ((current.orders - previous.orders) / previous.orders * 100).toFixed(1) : '0'
 
     return [
       { label: 'Revenue', value: `$${(current.revenue / 1000).toFixed(1)}k`, change: parseFloat(revenueChange), positive: parseFloat(revenueChange) >= 0 },
@@ -98,7 +98,7 @@ const revenueChartData = computed(() => {
   }
   
   // Highlight selected month
-  const colors = metrics.value.map((_, idx) => 
+  const colors = metrics.value.map((_, idx: number) => 
     idx === selectedIndex ? '#4CAF50' : '#CCCCCC'
   )
   
@@ -119,10 +119,10 @@ const revenueChartData = computed(() => {
 const visitorsChartData = computed(() => {
   const selectedIndex = selectedMonth.value === 'All' ? -1 : metrics.value.findIndex(m => m.month === selectedMonth.value)
   
-  const pointRadius = metrics.value.map((_, idx) =>
+  const pointRadius = metrics.value.map((_, idx: number) =>
     idx === selectedIndex ? 8 : 4
   )
-  const pointBackgroundColor = metrics.value.map((_, idx) =>
+  const pointBackgroundColor = metrics.value.map((_, idx: number) =>
     idx === selectedIndex ? '#1976D2' : '#2196F3'
   )
   
@@ -149,10 +149,10 @@ const visitorsChartData = computed(() => {
 const conversionsChartData = computed(() => {
   const selectedIndex = selectedMonth.value === 'All' ? -1 : metrics.value.findIndex(m => m.month === selectedMonth.value)
   
-  const pointRadius = metrics.value.map((_, idx) =>
+  const pointRadius = metrics.value.map((_, idx: number) =>
     idx === selectedIndex ? 8 : 4
   )
-  const pointBackgroundColor = metrics.value.map((_, idx) =>
+  const pointBackgroundColor = metrics.value.map((_, idx: number) =>
     idx === selectedIndex ? '#F57C00' : '#FF9800'
   )
   
